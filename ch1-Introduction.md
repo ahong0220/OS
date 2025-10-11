@@ -25,9 +25,23 @@
 - 儲存體結構(Storage Structure): 確保資料能在CPU、記憶體與外部裝置間正確傳遞。
 - I/O結構(Input/Output Structure): 管理裝置之間的資料交換與控制訊號。
 
-1. ### 中斷(Interrupt):
-- 定義: 中斷是硬體或軟體事件發生時，發送給CPU的訊號，用來要求暫停目前工作並處理該事件。
+1. ## 中斷(Interrupt):
+- 定義: 中斷是硬體或軟體事件發生時，發送給CPU的訊號，用來要求暫停目前工作並優先處理該事件。
+- 目的: 讓CPU不必一直等待裝置完成任務，提高效率；使系統能即時回應外部事件。
 - 運作流程:
-  1. Device Controller經由中斷請求線(IRQ, Interrupt Request Line)向中斷控制器發出請求。
-  2. 
+  1. Device Controller偵測到事件，發出IRQ(中斷請求)。
+  2. CPU停止目前指令的執行，保存現有狀態。
+  3. CPU透過中斷向量表(IVT)找出對應的中斷服務程式。
+  4. OS中的IRS處理該事件(如讀取資料、重設狀態)。
+  5. IRS結束，CPU恢復原先執行狀態並繼續原程式。
+- 系統元件:
+  1. IRQ(Interrupt Request Line): 硬體線路，用來傳送中斷請求。
+  2. PIC(Programmable Interrupt Controller): 管理多個IRQ的輸入，負責排序、篩選並傳送中斷給CPU。
+  3. IVT(Interrupt Vector Table): 記錄各種中斷對應的IRS位址，供CPU查找。
+  4. ISR(Interrupt Service Routine): 實際的中斷處理程式，由OS執行。
+- 重點概念:
+  - 硬體中斷: 由外部裝置(如鍵盤、磁碟)產生。
+  - 軟體中斷: 由程式主動觸發，用於系統呼叫或例外處理。
+  - 優點: 提升系統反應速度與資源利用率。
+- # 總結: 中斷是讓CPU能即時回應外部事件、保持系統高效運作的核心機制。
   
