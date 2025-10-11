@@ -66,7 +66,7 @@
     - 系統需在"處理速度"與"儲存容量"間取得平衡。
 - ### 總結: 儲存體結構是由多層次記憶體組成的階層系統，用以兼顧效能、容量與成本，使CPU能高效執行程式並穩定儲存資料。
 3. ## I/O結構(Input/Output Structure):
-  1. Polling I/O:
+  - Polling I/O:
     - 運作方式:
       - CPU不斷主動檢查IO裝置是否完成工作。
       - 若未完成，CPU持續等待(busy waiting)。
@@ -74,6 +74,6 @@
       - 結構簡單，早期系統常用。
       - CPU無法同時執行其他任務。
       - 效率最低。
-  2. Interrupt I/O:
-  3. DMA:
+  - Interrupt I/O:
+  - DMA:
   
