@@ -35,13 +35,19 @@
   4. OS中的IRS處理該事件(如讀取資料、重設狀態)。
   5. IRS結束，CPU恢復原先執行狀態並繼續原程式。
 - 系統元件:
-  1. IRQ(Interrupt Request Line): 硬體線路，用來傳送中斷請求。
-  2. PIC(Programmable Interrupt Controller): 管理多個IRQ的輸入，負責排序、篩選並傳送中斷給CPU。
-  3. IVT(Interrupt Vector Table): 記錄各種中斷對應的IRS位址，供CPU查找。
-  4. ISR(Interrupt Service Routine): 實際的中斷處理程式，由OS執行。
+  - IRQ(Interrupt Request Line): 硬體線路，用來傳送中斷請求。
+  - PIC(Programmable Interrupt Controller): 管理多個IRQ的輸入，負責排序、篩選並傳送中斷給CPU。
+  - IVT(Interrupt Vector Table): 記錄各種中斷對應的IRS位址，供CPU查找。
+  - ISR(Interrupt Service Routine): 實際的中斷處理程式，由OS執行。
 - 重點概念:
   - 硬體中斷: 由外部裝置(如鍵盤、磁碟)產生。
   - 軟體中斷: 由程式主動觸發，用於系統呼叫或例外處理。
   - 優點: 提升系統反應速度與資源利用率。
 - ### 總結: 中斷是讓CPU能即時回應外部事件、保持系統高效運作的核心機制。
+2. ## 儲存體結構(Storage Structure):
+- CPU只能從記憶體載入程式執行。
+- 所有被執行的程式與資料都必須先存在記憶體中。
+- 儲存體依速度與容量分層，用來平衡"效能、容量、成本"。
+  - 儲存體分類:
+    =
   
