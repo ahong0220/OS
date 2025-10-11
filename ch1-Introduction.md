@@ -25,7 +25,7 @@
 - 儲存體結構(Storage Structure): 確保資料能在CPU、記憶體與外部裝置間正確傳遞。
 - I/O結構(Input/Output Structure): 管理裝置之間的資料交換與控制訊號。
 
-## 中斷(Interrupt):
+### 中斷(Interrupt):
 - 定義: 中斷是硬體或軟體事件發生時，發送給CPU的訊號，用來要求暫停目前工作並處理該事件。
 - 運作流程:
   1. Device Controller經由中斷請求線(IRQ, Interrupt Request Line)向中斷控制器發出請求。
