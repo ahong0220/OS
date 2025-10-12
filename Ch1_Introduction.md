@@ -127,3 +127,28 @@
   - Multiprocesser: 多顆獨立CPU各自運作，透過主記憶體協同。
 
 ## Clustered System:
+- 概念:
+  - 由兩台或多台獨立電腦系統組成。
+  - 透過區域網路(LAN)或高速連線(Interconnet)相互連結。
+  - 共享儲存裝置(Storage-Area Network, SAN)。
+  - 目的: 提供高可用性(High Availability, HA)及容錯能力(Fault Tolerance)。
+- 類型:
+  1. 非對稱式叢集(Asymmetric Clustering):
+     - 架構中有一台為Stand-by Server。
+     - Stand-by平時不處理應用程式，僅監控工作中的主伺服器。
+     - 若主伺服器故障，Stand-by立即接手運作，維持系統服務不中斷。
+     - ### 優點: 架構簡單、容錯能力高。
+     - ### 缺點: 待機主機大多閒置，資源利用率低。
+  3. 對稱式叢集(Symmetric Clustering):
+     - 所有主機同時執行應用程式與監控任務。
+     - 沒有閒置的Stand-by機器，每台都能運算。
+     - 若某台故障，其他主機可立即分擔工作。
+     - ### 優點: 資源利用率高、運算效能提升。
+     - ### 缺點: 系統管理與同步較複雜，成本比較高。
+## Graceful Degradation(優雅降級):
+- 當多處理器或叢集系統中部份CPU故障時:
+  >> 系統效能不會瞬間歸零，而是逐步下降。
+- 表現出系統的高可用性與穩定性。
+- 好處:
+  - 提升服務連續性(Service Continuity)
+  - 減少單點故障(Single Point of Failure, SPOF)
