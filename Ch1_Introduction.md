@@ -97,3 +97,31 @@
 - ### 總結: Polling是由CPU親自檢查，Interrupt是由裝置通知CPU，DMA是由裝置自己處理並告訴CPU"已完成"。
 
 # 電腦系統的架構:
+- Single-Processor System(單一處理器系統)
+- Multiprocessor System(多處理器系統)
+- Clustered System(叢集系統)
+
+## Single-Processor System:
+- 只有一個CPU核心
+- 該核心包含Registers與Cache，用於指令執行與資料暫存。
+- 所有作業都由這顆CPU處理，因此同一時間只能執行一組指令。
+
+## Multiprocessor System:
+- 具有兩個以上的處理器(Processor)。
+- 每個Processor擁有自己的CPU、Register、Cache。
+- 可同時執行多個程序，提高系統效能。
+- 但效能不是線性增加(有共享記憶體與同步的負擔)。
+- 類型區分:
+  1. 非對稱式多元處理(Asymmetric Mult...)
+     - 主從架構(Master-Slave)
+     - 特點: 由主處理器分配工作，其他從屬處理器執行。
+  2. 對稱式多元處理(Symmetric Mult..., SMP)
+     - 無主從架構
+     - 特點: 所有處理器地位相同，共享記憶體。現代多核心CPU採用此架構。
+- 多核心處理(Multicore System):
+  - 一顆實體處理器中包含多個核心。
+  - 每個核心可以獨立執行指令。
+  - 各核心有自己的L1 cache，共享L2或L3。
+### 多核心處理器與多處理器系統比較:
+- 一顆CPU晶片內含多個core vs 系統內有多顆獨立的CPU
+- 多core共享同一組主記憶體與快取層級 vs 各CPU透過系統匯流排或共享記憶體互通
