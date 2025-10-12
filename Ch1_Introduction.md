@@ -123,5 +123,7 @@
   - 每個核心可以獨立執行指令。
   - 各核心有自己的L1 cache，共享L2或L3。
 ### 多核心處理器與多處理器系統比較:
-- 一顆CPU晶片內含多個core vs 系統內有多顆獨立的CPU
-- 多core共享同一組主記憶體與快取層級 vs 各CPU透過系統匯流排或共享記憶體互通
+- Multi-core: 一顆CPU裡多個core，在晶片內直接合作。
+- Multiprocesser: 多顆獨立CPU各自運作，透過主記憶體協同。
+
+## Clustered System:
