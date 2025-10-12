@@ -152,3 +152,9 @@
 - 好處:
   - 提升服務連續性(Service Continuity)
   - 減少單點故障(Single Point of Failure, SPOF)
+# 作業系統的運作
+# 資源管理
+# 安全與保護
+# 虛擬化
+# 分散式系統
+# 核心資料結構
