@@ -139,7 +139,7 @@
      - 若主伺服器故障，Stand-by立即接手運作，維持系統服務不中斷。
      - ### 優點: 架構簡單、容錯能力高。
      - ### 缺點: 待機主機大多閒置，資源利用率低。
-  3. 對稱式叢集(Symmetric Clustering):
+  2. 對稱式叢集(Symmetric Clustering):
      - 所有主機同時執行應用程式與監控任務。
      - 沒有閒置的Stand-by機器，每台都能運算。
      - 若某台故障，其他主機可立即分擔工作。
@@ -153,6 +153,19 @@
   - 提升服務連續性(Service Continuity)
   - 減少單點故障(Single Point of Failure, SPOF)
 # 作業系統的運作
+- 啟動與運作方式:
+  - OS是event-driven(事件驅動)系統: 只當事件發生時，作業系統才會被觸發執行。
+  - 系統在待機時主要由應用程式或硬體運作，當事件出現才交回控制權給OS。
+- Event的種類:
+  1. Interrupt-由硬體驅動(Driven by hardware)
+     - 當外部裝置完成任務時，會向CPU發出中斷訊號。
+     - 流程:
+       1. CPU暫停目前正在執行程式。
+       2. 進入中斷服務程序(ISR)
+       3. 作業系統處理該硬體事件後，返回原程式繼續執行。
+  2. Trap(or Exception)-由軟體驅動(Driven by software)
+    - 1. Error Trap(例外錯誤)
+      2. System Call(系統呼叫)
 # 資源管理
 # 安全與保護
 # 虛擬化
