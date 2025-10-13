@@ -133,20 +133,20 @@
   - 共享儲存裝置(Storage-Area Network, SAN)。
   - 目的: 提供高可用性(High Availability, HA)及容錯能力(Fault Tolerance)。
 - 類型:
-  1. 非對稱式叢集(Asymmetric Clustering):
+  1. **非對稱式叢集(Asymmetric Clustering)**
      - 架構中有一台為Stand-by Server。
      - Stand-by平時不處理應用程式，僅監控工作中的主伺服器。
      - 若主伺服器故障，Stand-by立即接手運作，維持系統服務不中斷。
      - ### 優點: 架構簡單、容錯能力高。
      - ### 缺點: 待機主機大多閒置，資源利用率低。
-  2. 對稱式叢集(Symmetric Clustering):
+  2. **對稱式叢集(Symmetric Clustering)**
      - 所有主機同時執行應用程式與監控任務。
      - 沒有閒置的Stand-by機器，每台都能運算。
      - 若某台故障，其他主機可立即分擔工作。
      - ### 優點: 資源利用率高、運算效能提升。
      - ### 缺點: 系統管理與同步較複雜，成本比較高。
 
-## Graceful Degradation(優雅降級):
+## Graceful Degradation(優雅降級)
 - 當多處理器或叢集系統中部份CPU故障時:
   -> 系統效能不會瞬間歸零，而是逐步下降。
 - 表現出系統的高可用性與穩定性。
@@ -155,11 +155,11 @@
   - 減少單點故障(Single Point of Failure, SPOF)
 
 # 作業系統的運作
-- ## 啟動與運作方式:
+- ## 啟動與運作方式
   - OS是event-driven(事件驅動)系統: 只當事件發生時，作業系統才會被觸發執行。
   - 系統在待機時主要由應用程式或硬體運作，當事件出現才交回控制權給OS。
 
-- ## Event的種類:
+- ## Event的種類
   1. **Interrupt(硬體觸發)**
     - 當外部裝置完成任務時，會向CPU發出中斷訊號。
     - 流程:
@@ -176,13 +176,13 @@
        - 屬於受控的Trap，用來執行系統功能。
        - 如:read() -> 從檔案讀取資料
 
-- ## 整體運作流程:
+- ## 整體運作流程
   - Hardware事件 -> Interrupt -> 由OS處理
   - Software錯誤 -> Trap(Error) -> 由OS保護系統穩定
   - 程式請求服務 -> Trap(System call) -> 由OS執行I/O或管理任務
 - ### 總結: OS只在事件發生時才"介入"，平時讓CPU執行一般程式。是以事件觸發點的控制系統。
 
-- ## 程式設計模式演進:
+- ## 程式設計模式演進
   1. **單一程式(Single-programming system)**
      - 同一時間僅允許一個程式(P1)執行。
      - 若P1需等待I/O，CPU會閒置(Idle)
@@ -211,6 +211,29 @@
      - 改進方式:
        - 分時系統(Time-sharing System)
        - 讓CPU按時間片輪流分配資源，提升互動性與回應速度。
+  6. **多任務系統(Time-sharing/Multi-tasking System)**
+     - 目的: 解決多程式長時間占用CPU的問題。
+     - 原理:
+       - 將CPU時間分割成多個時間片(Time slice)。
+       - 每個process只能使用固定時間，然後CPU會切換到下一個程式。
+       - 提升系統反應速度(Response Time)，提供互動式(Interactive)體驗。
+     - 長時間占用CPU的問題:
+       - 若某程式陷入無限Loop或不釋放CPU，則其他程式會被阻塞。
+       - 解決方式: 讓OS能主動奪回控制權。
+     - 事件驅動的OS(Event-Driven OS)
+       - OS只有在事件發生時才執行。
+       - 進入OS的三種情境:
+         1. Interrupt
+         2. Trap(Error)
+         3. Trap(System call)
+     - 計時器(Timer)(OS奪回CPU之關鍵)
+       - 硬體產生週期性中斷(Timer Interrupt)
+       - 當時間片用完時，CPU會觸發中斷訊號 >> 進入OS >> 檢查是否該切換程式。
+       - 若程式執行過久，OS會:
+         1. 強制中止該程式。
+         2. 將CPU分配給其他程式。
+       - 為時間片輪轉(Round-Robin Scheduling)的基礎。
+      - 雙模式操作(Dual-Mode Operation)
 # 資源管理
 # 安全與保護
 # 虛擬化
