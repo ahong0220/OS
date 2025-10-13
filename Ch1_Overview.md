@@ -189,7 +189,7 @@
      - 缺點: CPU利用率低。
   2. **多元程式(Multi-programming system)**
      - 多個程式同時存在主記憶體，CPU依需求切換執行。
-     - 目的: 讓CPU不閒置(Maximize CPU utilization)。
+     - 目的: 讓CPU永不閒置(Maximize CPU utilization)。
      - 作法: 透過CPU排程實現。
   3. **多個Process的執行方式**
      - 並行(Concurrent):
@@ -233,7 +233,22 @@
          1. 強制中止該程式。
          2. 將CPU分配給其他程式。
        - 為時間片輪轉(Round-Robin Scheduling)的基礎。
-      - 雙模式操作(Dual-Mode Operation)
+     - 雙模式操作(Dual-Mode Operation)
+       - 為了防止使用者程式干擾系統或硬體，CPU設有兩種模式:
+         1. User Mode:   權限:低  特點:只執行安全指令，不可控制硬體。
+         2. Kernel Mode: 權限:高  特點:作業系統運行模式，可存取硬體與系統資源。
+       - 透過暫存器的mode bit控制(1=user / 0=kernel)
+     - 特權指令(Privileged Instructions)
+       - 某些高風險指令僅能在Kernel中執行。
+       - 如:關閉中斷(CLI)、清除記憶體、切換模式、寫入監控記憶體
+       - 若使用者在user mode嘗試執行 -> 會產生Trap(Exception) -> 交由OS處理。
+     - 模式切換的運作
+       - 進入OS(User -> Kernel):
+         - 發生中斷或系統呼叫時，mode bit變成0。
+         - CPU跳到OS中的系統呼叫處理程式。
+       - 返回使用者程式(Kernel -> User):
+         - OS處理完後執行return from system call，mode bit恢復為1。
+- ### 總結: OS的核心職責是控制CPU時間的分配與保護系統安全。透過多元程式->分時系統->多任務->雙模式保護的演進，現代作業系統能同時運行多程式，維持高效且穩定的運作，並確保使用者程式不會直接影響核心與硬體。
 # 資源管理
 # 安全與保護
 # 虛擬化
