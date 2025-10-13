@@ -158,14 +158,15 @@
 - ## 啟動與運作方式:
   - OS是event-driven(事件驅動)系統: 只當事件發生時，作業系統才會被觸發執行。
   - 系統在待機時主要由應用程式或硬體運作，當事件出現才交回控制權給OS。
+
 - ## Event的種類:
-  1. Interrupt-由硬體驅動(Driven by hardware)
+  1. **Interrupt(硬體觸發)**
     - 當外部裝置完成任務時，會向CPU發出中斷訊號。
     - 流程:
       1. CPU暫停目前正在執行程式。
       2. 進入中斷服務程序(ISR)
       3. 作業系統處理該硬體事件後，返回原程式繼續執行。
-  2. Trap(or Exception)-由軟體驅動(Driven by software)
+  2. **Trap(or Exception)(軟體觸發)**
     1. Error Trap(例外錯誤):
        - 程式執行中出現異常，如A/0。
        - CPU每執行一條指令會檢查是否合法，若出現異常，產生Trap通知OS處理。
@@ -174,11 +175,42 @@
        - 程式主動向OS請求服務。
        - 屬於受控的Trap，用來執行系統功能。
        - 如:read() -> 從檔案讀取資料
+
 - ## 整體運作流程:
   - Hardware事件 -> Interrupt -> 由OS處理
   - Software錯誤 -> Trap(Error) -> 由OS保護系統穩定
   - 程式請求服務 -> Trap(System call) -> 由OS執行I/O或管理任務
 - ### 總結: OS只在事件發生時才"介入"，平時讓CPU執行一般程式。是以事件觸發點的控制系統。
+
+- ## 程式設計模式演進:
+  1. **單一程式(Single-programming system)**
+     - 同一時間僅允許一個程式(P1)執行。
+     - 若P1需等待I/O，CPU會閒置(Idle)
+     - 缺點: CPU利用率低。
+  2. **多元程式(Multi-programming system)**
+     - 多個程式同時存在主記憶體，CPU依需求切換執行。
+     - 目的: 讓CPU不閒置(Maximize CPU utilization)。
+     - 作法: 透過CPU排程實現。
+  3. **多個Process的執行方式**
+     - 並行(Concurrent):
+       - 說明: 單顆CPU在多個程式間"快速切換"，使人感覺同時進行。
+       - 需求: 一顆CPU即可完成(多次切換)。
+       - 對應系統: 多元程式系統。
+     - 平行(Parallel):
+       - 說明: 多顆CPU同時執行多個程式。
+       - 需求: 需要多處理器或多核心系統。
+       - 對應系統: 多處理器系統。
+  4. **多個Process如何"同時執行"**
+     - CPU Scheduling: 決定哪個Process先執行。
+     - Job Scheduling: 決定哪些作業可被載入記憶體執行。
+     - Memory Management: 管理多程式在主記憶體中的配置與釋放。
+     - ### 三者協作讓多程式系統能同時進行而不互相衝突。
+  5. **多元程式的限制與改進**
+     - 若某程式(P1)長時間執行、不進行I/O，則其他程式(P2)需長時間等待:
+       - 問題: Response Time過長(反應時間太慢)。
+     - 改進方式:
+       - 分時系統(Time-sharing System)
+       - 讓CPU按時間片輪流分配資源，提升互動性與回應速度。
 # 資源管理
 # 安全與保護
 # 虛擬化
