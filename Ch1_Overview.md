@@ -249,7 +249,7 @@
 # 作業系統的資源管理(Resource Management)
 - 作業系統的核心任務之一有效管理系統資源，確保多個使用者與程式能公平、安全且高效地共享CPU、記憶體與I/O裝置。
 - 主要包含以下六面向:
-  1. **Process Management(行程管理)**
+  1.**Process Management(行程管理)**
     - Process是正在執行的程式(Program)，而程式本身只是靜態存在於儲存裝置的可執行檔。
     - Program -> 存在硬碟中，屬於靜態。
     - Process -> 載入記憶體後執行，屬於動態實體。
@@ -259,7 +259,7 @@
       3. 行程間的同步(Synchronization)。
       4. 行程間的通訊(Communication)。
       5. 死結(Deadlock)的偵測與處理。
-  2. **Memory Management(記憶體管理)**
+  2.**Memory Management(記憶體管理)**
      - 記憶體是程式執行時的主要儲存空間，所有指令與資料都必須被載入記憶體後才能由CPU執行。
      - 一條記憶體條由多個IC組成，總容量=各IC容量總和。
      - 每個Address對應一個Byte的內容。
@@ -276,6 +276,12 @@
        2. 追蹤記憶體使用狀況，確認哪個區塊被哪個行程占用。
        3. 決定哪些程式或資料須移入或移出記憶體以提升效能。
        4. 動態進行記憶體的配置與回收(allocation/deallocation)。
+     - **記憶體不足**
+       記憶體空間不足時，OS透過:
+       - 分頁(Paging)或分段(Segmentation)技術分配記憶體。
+       - 虛擬記憶體(Virtual Memory): 利用硬碟暫時模擬主記憶體。
+  3. **File-system Management(檔案系統管理)**
+  4. 
 # 安全與保護
 # 虛擬化
 # 分散式系統
