@@ -58,6 +58,39 @@
 - Degree of multiprogramming: 記憶體中同時存在的行程數量；越多表示越忙碌。
 - I/O-bound process: 多數時間在執行I/O(如硬碟、網路)，計算少。
 - CPU-bound process: 多數時間在做計算(數學、壓縮、挖礦)，I/O少。
+## Scheduling Queues(排程佇列)
+**定義**
+- processes會在記憶體中排隊等待執行，這些排隊結構稱為scheduling queues。
+- 由OS管理。
+**兩種主要佇列**
+1. Ready Queue(就緒佇列): 存放所有已在記憶體中、等待CPU執行的process。只有一個ready queue。
+2. Wait Queue(等待佇列): 當process執行到一半需要I/O或等待事件時，會暫時釋放CPU並進入對應的wait queue。不同I/O裝置或事件各有自己的wait queue(可能有多個)。
+**佇列的儲存方式**
+- 系統以linklist將所有process的PCB串接起來。
+- 每個queue都有head和tail指標指向隊首與隊尾。
+- ready queue及多個wait queue都以相同方式串接。
+**Process的流動**
+- process可在不同queue間切換: ready queue > cpu > IO wait queue > ready queue
+- 當process執行IO、時間片到期、或發生中斷時，都可能離開或返回ready queue。
+## CPU Scheduling(CPU排程)
+**定義**
+- 是OS中的一段程式碼。
+- 負責從ready queue中挑選一個process交給CPU執行。
+- 運作在kernel mode，非使用者程式的一部份。
+**觸發時機**
+- 當timer中斷發生時。
+- 或當: process結束執行；process進入waiting狀態；process被強制中斷(preemption)。
+**運作過程**
+1. CPU正在執行某程式。
+2. timer interrupt發生。
+3. 目前程式暫停，系統跳入ISR。
+4. ISR呼叫CPU scheduler判斷。
+5. 若需切換，執行context switch，載入下一個process的狀態繼續執行。
+## Swapping(置換)
+**當記憶體空間不足時，OS會暫時把某些process從記憶體移到硬碟。**
+- 移出記憶體: swap out
+- 移回記憶體: swap in
+**目的**: 在有限記憶體下調整可同時執行的行程數量。
 # Operations on Processes(行程操作)
 # Interprocess Communication(行程間通訊)
 # IPC in shared-memory systems(共享記憶體中的行程通訊)
