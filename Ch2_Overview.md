@@ -4,18 +4,18 @@
 - System view(系統觀點): 如何高效管理資源？
 ## OS的運作層次與服務
 - User Interfaces: 提供與OS互動的方式。
-  - GUI(圖形介面)
-  - Touch screen(觸控介面)
-  - Command line(命令列)
+   - GUI(圖形介面)
+   - Touch screen(觸控介面)
+   - Command line(命令列)
 - System calls: 使用者程式與OS之間的橋樑，負責連接應用層與核心層。
 - OS Services: 提供核心功能讓程式運作
-  - Program execution(程式執行)
-  - I/O operations(輸入輸出操作)
-  - File systems(檔案系統)
-  - Communication(資源分配)
-  - Accounting(使用者帳務或使用紀錄)
-  - Error detection(錯誤偵測)
-  - Protection and security(保護與安全)
+   - Program execution(程式執行)
+   - I/O operations(輸入輸出操作)
+   - File systems(檔案系統)
+   - Communication(資源分配)
+   - Accounting(使用者帳務或使用紀錄)
+   - Error detection(錯誤偵測)
+   - Protection and security(保護與安全)
 <img width="628" height="316" alt="image" src="https://github.com/user-attachments/assets/9f93bebe-ef9c-4a76-a525-dda8af264620" />
 
 
@@ -23,16 +23,16 @@
 - 目的: OS提供介面，讓使用者能與系統互動、操作硬體與程式。
 - 使用者介面種類:
   1. 命令解譯器(Command Interpreter, CLI)
-    - 以文字指令操作系統。
-    - 優點: 效率高、可自動化(script)。
-    - 缺點: 需要記指令，學習曲線高。
+     - 以文字指令操作系統。
+     - 優點: 效率高、可自動化(script)。
+     - 缺點: 需要記指令，學習曲線高。
   2. 圖形使用者介面(Graphical User Interface, GUI)
-    - 以圖示、視窗、按鈕等圖形方式操作。
-    - 優點: 直覺、容易使用。
-    - 缺點: 需要較多資源(記憶體與運算)。
+     - 以圖示、視窗、按鈕等圖形方式操作。
+     - 優點: 直覺、容易使用。
+     - 缺點: 需要較多資源(記憶體與運算)。
   3. 觸控螢幕介面(Touch Screen)
-    - 使用手勢直接控制。
-    - 結合GUI，提供更自然的互動方式。
+     - 使用手勢直接控制。
+     - 結合GUI，提供更自然的互動方式。
 # System Call(系統呼叫)
 ## OS是event-driven(事件驅動): 作業系統根據"事件"來反應與執行。
 - Event可能是:
