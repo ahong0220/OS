@@ -52,13 +52,13 @@
   - 可同時處理多項任務。
   - 若所有工作都在單一thread，下載時整個畫面會卡住。
 ### 總結: PCB儲存行程執行狀態，確保中斷後能恢復。Thread是行程內的執行單位，允許同時進行多工作。
+
 # Process Scheduling(行程排程)
 **定義**
 - process scheduler(CPU scheduler): 一段系統程式，負責從ready queue挑選下一個要執行的process。
 - Degree of multiprogramming: 記憶體中同時存在的行程數量；越多表示越忙碌。
 - I/O-bound process: 多數時間在執行I/O(如硬碟、網路)，計算少。
 - CPU-bound process: 多數時間在做計算(數學、壓縮、挖礦)，I/O少。
-
 ## Scheduling Queues(排程佇列)
 **定義**
 - processes會在記憶體中排隊等待執行，這些排隊結構稱為scheduling queues。
@@ -98,6 +98,20 @@
 - 移回記憶體: swap in
 
 **目的**: 在有限記憶體下調整可同時執行的行程數量。
+## Context Switch(內容轉換)
+**定義**
+- 當CPU在多個process之間切換執行時，OS必須暫存舊行程的執行狀態，並載入新行程的狀態，這個過程稱為context switch。
+
+**發生時機**
+- 發生在多工系統中，當: 時脈中斷、系統呼叫、IO完成或事件觸發、Preemption時，CPU會切換執行中的process。
+
+**核心步驟**
+1. Save the state: 將目前process的狀態儲存到該process的PCB中。
+2. Restore the state: 從下一個process的PCB中取出先前狀態，恢復到CPU暫存器後繼續執行。
+
+**問題**
+- 切換期間CPU沒有執行任何user process(CPU ldle)。
+- context switch需要時間，效率取決於硬體速度(記憶體、暫存器數量等)。
 # Operations on Processes(行程操作)
 # Interprocess Communication(行程間通訊)
 # IPC in shared-memory systems(共享記憶體中的行程通訊)
