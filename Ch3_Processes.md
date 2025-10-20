@@ -53,6 +53,11 @@
   - 若所有工作都在單一thread，下載時整個畫面會卡住。
 ### 總結: PCB儲存行程執行狀態，確保中斷後能恢復。Thread是行程內的執行單位，允許同時進行多工作。
 # Process Scheduling(行程排程)
+**定義**
+- process scheduler(CPU scheduler): 一段系統程式，負責從ready queue挑選下一個要執行的process。
+- Degree of multiprogramming: 記憶體中同時存在的行程數量；越多表示越忙碌。
+- I/O-bound process: 多數時間在執行I/O(如硬碟、網路)，計算少。
+- CPU-bound process: 多數時間在做計算(數學、壓縮、挖礦)，I/O少。
 # Operations on Processes(行程操作)
 # Interprocess Communication(行程間通訊)
 # IPC in shared-memory systems(共享記憶體中的行程通訊)
