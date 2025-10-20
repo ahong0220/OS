@@ -81,7 +81,8 @@
 <img width="692" height="397" alt="image" src="https://github.com/user-attachments/assets/4be70b18-8cbb-41d5-a0be-d3ee80617e62" />
 
 ## System calls的運作流程
-System call是user program與operating system kernel溝通的橋樑。透過trap讓cpu進入kernel mode，由OS執行請求的服務，再回到使用者程式。
+System call是user program與operating system kernel溝通的橋樑。
+透過trap讓cpu進入kernel mode，由OS執行請求的服務，再回到使用者程式。
 ## APIs
 - 定義: 使用者程式呼叫system call的介面。是一個間接層，讓開發者能操作OS功能，而不需理解底層系統細節。
 - 目的: 提供"標準化方式"讓開發者存取OS功能，不須知道底層system call實作。
