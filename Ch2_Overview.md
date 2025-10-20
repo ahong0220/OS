@@ -16,6 +16,8 @@
   - Accounting(使用者帳務或使用紀錄)
   - Error detection(錯誤偵測)
   - Protection and security(保護與安全)
+<img width="628" height="316" alt="image" src="https://github.com/user-attachments/assets/9f93bebe-ef9c-4a76-a525-dda8af264620" />
+
 
 # User and Operating-System Interface(使用者與作業系統介面)
 - 目的: OS提供介面，讓使用者能與系統互動、操作硬體與程式。
