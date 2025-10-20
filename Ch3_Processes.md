@@ -63,13 +63,16 @@
 **定義**
 - processes會在記憶體中排隊等待執行，這些排隊結構稱為scheduling queues。
 - 由OS管理。
+
 **兩種主要佇列**
 1. Ready Queue(就緒佇列): 存放所有已在記憶體中、等待CPU執行的process。只有一個ready queue。
 2. Wait Queue(等待佇列): 當process執行到一半需要I/O或等待事件時，會暫時釋放CPU並進入對應的wait queue。不同I/O裝置或事件各有自己的wait queue(可能有多個)。
+
 **佇列的儲存方式**
 - 系統以linklist將所有process的PCB串接起來。
 - 每個queue都有head和tail指標指向隊首與隊尾。
 - ready queue及多個wait queue都以相同方式串接。
+
 **Process的流動**
 - process可在不同queue間切換: ready queue > cpu > IO wait queue > ready queue
 - 當process執行IO、時間片到期、或發生中斷時，都可能離開或返回ready queue。
