@@ -81,9 +81,11 @@
 - 是OS中的一段程式碼。
 - 負責從ready queue中挑選一個process交給CPU執行。
 - 運作在kernel mode，非使用者程式的一部份。
+
 **觸發時機**
 - 當timer中斷發生時。
 - 或當: process結束執行；process進入waiting狀態；process被強制中斷(preemption)。
+
 **運作過程**
 1. CPU正在執行某程式。
 2. timer interrupt發生。
@@ -94,6 +96,7 @@
 **當記憶體空間不足時，OS會暫時把某些process從記憶體移到硬碟。**
 - 移出記憶體: swap out
 - 移回記憶體: swap in
+
 **目的**: 在有限記憶體下調整可同時執行的行程數量。
 # Operations on Processes(行程操作)
 # Interprocess Communication(行程間通訊)
