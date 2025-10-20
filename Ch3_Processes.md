@@ -58,6 +58,7 @@
 - Degree of multiprogramming: 記憶體中同時存在的行程數量；越多表示越忙碌。
 - I/O-bound process: 多數時間在執行I/O(如硬碟、網路)，計算少。
 - CPU-bound process: 多數時間在做計算(數學、壓縮、挖礦)，I/O少。
+
 ## Scheduling Queues(排程佇列)
 **定義**
 - processes會在記憶體中排隊等待執行，這些排隊結構稱為scheduling queues。
