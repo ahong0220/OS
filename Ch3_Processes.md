@@ -112,7 +112,61 @@
 **問題**
 - 切換期間CPU沒有執行任何user process(CPU ldle)。
 - context switch需要時間，效率取決於硬體速度(記憶體、暫存器數量等)。
+
 # Operations on Processes(行程操作)
+## Process Creation(行程建立)
+- 每個行程都有一個唯一的PID(Process Identifier 行程識別碼)。
+- 行程之間具有父子關係(Parent Child)，形成Process Tree。
+  - Parent Process: 建立其他行程的行程。
+  - Child Process: 由parent建立的新行程。
+- 系統會用這種層級結構來管理與追蹤所有process。
+
+## 父子行程的執行順序
+**單核心:**
+- 兩個行程(parent、child)不能真正同時執行，只能交替運作。
+- OS會依排程策略決定誰先執行：
+  1. Concurrent(並行): 輪流使用CPU，看似同時執行。
+  2. Parent等Child結束再做: 使用wait()。
+  3. Child等Parent結束再做: 少見，需特別控制。
+
+## Address Space(行程空間)
+- 每個process都有自己的獨立記憶體區域(address space)。
+- 包含: text、data、heap、stack
+- 行程間的記憶體空間彼此隔離，互不干擾。
+
+## fork()_Unix
+- fork()是系統呼叫，用來建立一個新的child process。
+- 子行程是父行程的**複本**(包含相同的程式碼與資料內容)。
+- 父子行程可同時存在，各自擁有不同的PID。
+
+## exec()_Unix
+- exec()讓目前行程以新程式取代自身內容。
+- 通常搭配fork()使用:
+  1. Parent 執行fork() -> 產生 child。
+  2. child 執行exec() -> 載入並執行新程式。
+ 
+## UNIX系統中的行程操作流程
+- fork():建立新的child process，並copy parent的記憶體內容。
+  - parent得到child process的PID(>0)
+  - child得到PID = 0
+- exec():child用此系統呼叫以新程式取代自身內容。
+- wait():parent會暫停執行，等待child結束(由OS通知)。
+- <img width="651" height="356" alt="image" src="https://github.com/user-attachments/assets/ab0dafad-e981-4a49-acc0-50bf10a9f163" />
+- **Process Termination(行程終止)**
+  - 使用系統呼叫exit()。
+  - 當子行程結束時，OS自動呼叫exit()並執行兩件事:
+      1. 將子行程的狀態(PID、exit code)回傳給parent。
+      2. 回收子行程使用的所有資源(記憶體、PID、檔案描述等)。
+
+## Zombie process(殭屍行程)
+**定義**
+   當child process已經結束(exit)，但parent還沒呼叫wait()來回收它的狀態時，該child的PCB仍暫存在系統中。這尚未被清除的行程稱為zombie process。
+
+**原因**
+  OS必須保留child的結束資訊給parent查詢，所以不能立即刪除child的PCB。
+
+**解決方式**
+  當parent呼叫wait()，OS會回傳child的狀態並釋放它的PCB，殭屍行程才會被真正清除。
 # Interprocess Communication(行程間通訊)
 # IPC in shared-memory systems(共享記憶體中的行程通訊)
 # IPC in message-passing systems(訊息傳遞中的行程通訊)
