@@ -160,13 +160,22 @@
 
 ## Zombie process(殭屍行程)
 **定義**
-   當child process已經結束(exit)，但parent還沒呼叫wait()來回收它的狀態時，該child的PCB仍暫存在系統中。這尚未被清除的行程稱為zombie process。
+- 當child process已經結束(exit)，但parent還沒呼叫wait()來回收它的狀態時，該child的PCB仍暫存在系統中。這尚未被清除的行程稱為zombie process。
 
 **原因**
-  OS必須保留child的結束資訊給parent查詢，所以不能立即刪除child的PCB。
+- OS必須保留child的結束資訊給parent查詢，所以不能立即刪除child的PCB。
 
 **解決方式**
-  當parent呼叫wait()，OS會回傳child的狀態並釋放它的PCB，殭屍行程才會被真正清除。
+- 當parent呼叫wait()，OS會回傳child的狀態並釋放它的PCB，殭屍行程才會被真正清除。
+
+## Orphan process(孤兒行程)
+**定義**
+- 若parent process結束(terminated)，但child process仍在執行中，則該child變成Orphan process。
+
+**解決方式**
+- OS會自動把孤兒行程重新指定給init/systemd(PID = 1)當新富父行程，由它負責在child結束時呼叫wait()來回收資源。
+<img width="704" height="397" alt="image" src="https://github.com/user-attachments/assets/95d1361b-b732-4556-af7f-11736ceba8bc" />
+
 # Interprocess Communication(行程間通訊)
 # IPC in shared-memory systems(共享記憶體中的行程通訊)
 # IPC in message-passing systems(訊息傳遞中的行程通訊)
